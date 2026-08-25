@@ -2,8 +2,7 @@ services:
   db:
     image: postgres:latest
     ports:
-      - "5432-5432"
-
+      - "5432:5432"
     restart: always
     environment:
       POSTGRES_PASSWORD: prod!
@@ -12,7 +11,7 @@ services:
     image: adminer:latest
     restart: always
     ports:
-      - 8888:8080
+      - "8888:8080"
 
   keycloak:
     image: quay.io/keycloak/keycloak:latest
@@ -21,12 +20,15 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-
+      KC_DB: postgres
+      KC_DB_URL_HOST: db
+      KC_DB_URL_DATABASE: postgres
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: prod!
     volumes:
       - keycloak-data:/opt/keycloak/data
     command:
       - start-dev
-      - --db=dev-file
 
 volumes:
   keycloak-data:
