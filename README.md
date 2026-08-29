@@ -37,7 +37,7 @@
 <h3 align="center">Event Ticket Platform</h3>
 
   <p align="center">
-    project_description
+    project_description - An app for organisation/attending/staffing events
     <br />
     <a href="https://github.com/vixello/Event-ticket-platform"><strong>Explore the docs »</strong></a>
     <br />
@@ -85,7 +85,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `vixello`, `Event-ticket-platform`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `Event Ticket Platform`, `project_description`, `project_license`
+Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `vixello`, `Event-ticket-platform`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `Event Ticket Platform`, `project_description - An app for organisation/attending/staffing events`, `project_license`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -93,14 +93,13 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+* [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+* [![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
+* [![JPA](https://img.shields.io/badge/JPA-59666C?style=for-the-badge&logo=hibernate&logoColor=white)](https://jakarta.ee/specifications/persistence/)
+* [![Spring Security](https://img.shields.io/badge/Spring%20Security-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)](https://spring.io/projects/spring-security)
+* [![Spring Web](https://img.shields.io/badge/Spring%20Web-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-framework)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
