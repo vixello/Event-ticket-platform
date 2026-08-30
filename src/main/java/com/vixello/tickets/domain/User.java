@@ -29,8 +29,7 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    //TODO: organized, attending, staffing events
-
+    // implement soft delete later for cascade
     @OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL)
     private List<Event> organizedEvents = new ArrayList<>();
 
