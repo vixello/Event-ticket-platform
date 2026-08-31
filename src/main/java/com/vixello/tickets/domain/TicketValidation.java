@@ -22,6 +22,7 @@ public class TicketValidation {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
     @Column(name = "status", nullable = false)
