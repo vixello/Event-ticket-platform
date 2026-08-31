@@ -17,13 +17,14 @@
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
+[![project_license][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![project_license][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 
 
@@ -85,6 +86,8 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
+An Event Ticket Platform similar to Ticketmaster etc.
+
 Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `vixello`, `Event-ticket-platform`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `Event Ticket Platform`, `project_description - An app for organisation/attending/staffing events`, `project_license`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -122,23 +125,22 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+To run the backend locally:
+1. Clone the repo
    ```sh
    git clone https://github.com/vixello/Event-ticket-platform.git
    ```
-3. Install NPM packages
+2. Navigate to the backend project folder
    ```sh
-   npm install
+    cd backend
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
+3. Build the project using Maven
    ```sh
-   git remote set-url origin vixello/Event-ticket-platform
-   git remote -v # confirm the changes
+    ./mvnw clean install
+   ```
+4. Start the Spring Boot application
+   ```sh
+    ./mvnw spring-boot:run
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
