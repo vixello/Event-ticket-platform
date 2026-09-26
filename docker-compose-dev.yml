@@ -27,9 +27,17 @@ services:
       KC_DB_PASSWORD: prod!
     volumes:
       - keycloak-data:/opt/keycloak/data
+      - ./keycloak/themes:/opt/keycloak/themes
+
+#  The last three options are development-only.
+#  They make Keycloak reload theme changes without you constantly fighting its theme cache.
+#  Keycloak's documentation explicitly recommends disabling theme caching
+#  while developing a theme and re-enabling it in production.
     command:
       - start-dev
-
+      - --spi-theme--static-max-age=-1
+      - --spi-theme--cache-themes=false
+      - --spi-theme--cache-templates=false
 volumes:
   keycloak-data:
     driver: local
