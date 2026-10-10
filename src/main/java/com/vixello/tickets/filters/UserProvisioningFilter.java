@@ -1,6 +1,6 @@
 package com.vixello.tickets.filters;
 
-import com.vixello.tickets.domain.User;
+import com.vixello.tickets.domain.entities.User;
 import com.vixello.tickets.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

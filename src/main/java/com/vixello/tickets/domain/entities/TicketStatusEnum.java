@@ -1,4 +1,4 @@
-package com.vixello.tickets.domain;
+package com.vixello.tickets.domain.entities;
 
 public enum TicketStatusEnum {
     PURCHASED,
