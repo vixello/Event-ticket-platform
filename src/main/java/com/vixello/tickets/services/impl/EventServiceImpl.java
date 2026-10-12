@@ -6,6 +6,7 @@ import com.vixello.tickets.domain.entities.Event;
 import com.vixello.tickets.domain.entities.TicketType;
 import com.vixello.tickets.domain.entities.User;
 import com.vixello.tickets.exceptions.UserNotFoundException;
+import com.vixello.tickets.repositories.EventRepository;
 import com.vixello.tickets.repositories.UserRepository;
 import com.vixello.tickets.services.EventService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.UUID;
 public class EventServiceImpl implements EventService {
 
     private final UserRepository userRepository;
+    private final EventRepository eventRepository;
 
     @Override
     public Event createEvent(UUID organizerId, CreateEventRequest eventRequest) {
@@ -47,7 +49,8 @@ public class EventServiceImpl implements EventService {
         eventToCreate.setStatus(eventRequest.getStatus());
         eventToCreate.setOrganizer(organizer);
         eventToCreate.setTicketTypes(ticketTypes);
-        return null;
+
+        return eventRepository.save(eventToCreate);
     }
 
     @Override
