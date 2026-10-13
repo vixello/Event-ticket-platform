@@ -31,5 +31,5 @@ public class CreateEventRequestDto {
     private EventStatusEnum status;
 
     @NotEmpty(message = "At least one ticket type is required")
-    private List<CreateTicketTypeRequestDto> ticketTypes = new ArrayList<>();
+    private List<CreateTicketTypeRequestDto> ticketTypes;
 }
