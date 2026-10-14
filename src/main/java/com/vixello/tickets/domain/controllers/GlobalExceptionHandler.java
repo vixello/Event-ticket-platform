@@ -1,6 +1,7 @@
 package com.vixello.tickets.domain.controllers;
 
 import com.vixello.tickets.domain.dtos.ErrorDto;
+import com.vixello.tickets.exceptions.UserNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,16 @@ import java.util.List;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorDto> userNotFoundException(UserNotFoundException ex) {
+        log.error("Caught UserNotFoundException", ex);
+
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("User not found");
+
+        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorDto> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         log.error("Caught MethodArgumentNotValidException", ex);
