@@ -10,6 +10,8 @@ import com.vixello.tickets.repositories.EventRepository;
 import com.vixello.tickets.repositories.UserRepository;
 import com.vixello.tickets.services.EventService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,8 @@ public class EventServiceImpl implements EventService {
         User organizer = userRepository.findById(organizerId).orElseThrow(() ->
                 new UserNotFoundException(String.format("User with ID '%s' not found", organizerId)));
 
+        Event eventToCreate = new Event();
+
         List<TicketType> ticketTypes = eventRequest.getTicketTypes().stream().map(ticketType ->
         {
             TicketType ticketTypeToCreate = new TicketType();
@@ -35,11 +39,10 @@ public class EventServiceImpl implements EventService {
             ticketTypeToCreate.setDescription(ticketType.getDescription());
             ticketTypeToCreate.setPrice(ticketType.getPrice());
             ticketTypeToCreate.setTotalAvailable(ticketType.getTotalAvailable());
-
+            ticketTypeToCreate.setEvent(eventToCreate);
             return ticketTypeToCreate;
         }).toList();
 
-        Event eventToCreate = new Event();
         eventToCreate.setName(eventRequest.getName());
         eventToCreate.setStart(eventRequest.getStart());
         eventToCreate.setEnd(eventRequest.getEnd());
@@ -51,6 +54,14 @@ public class EventServiceImpl implements EventService {
         eventToCreate.setTicketTypes(ticketTypes);
 
         return eventRepository.save(eventToCreate);
+    }
+
+    @Override
+    public Page<Event> listEventForOrganizer(UUID organizerId, Pageable pageable){
+        User organizer = userRepository.findById(organizerId).orElseThrow(() ->
+                new UserNotFoundException(String.format("User with ID '%s' not found", organizerId)));
+
+        return eventRepository.findByOrganizerId(organizerId, pageable);
     }
 
     @Override
