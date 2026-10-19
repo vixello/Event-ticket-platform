@@ -2,10 +2,9 @@ package com.vixello.tickets.domain.mappers;
 
 import com.vixello.tickets.domain.CreateEventRequest;
 import com.vixello.tickets.domain.CreateTicketTypeRequest;
-import com.vixello.tickets.domain.dtos.CreateEventRequestDto;
-import com.vixello.tickets.domain.dtos.CreateEventResponseDto;
-import com.vixello.tickets.domain.dtos.CreateTicketTypeResponseDto;
+import com.vixello.tickets.domain.dtos.*;
 import com.vixello.tickets.domain.entities.Event;
+import com.vixello.tickets.domain.entities.TicketType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -15,4 +14,6 @@ public interface EventMapper {
     CreateTicketTypeResponseDto toDto(CreateTicketTypeRequest typeRequest);
     CreateEventRequest fromDto(CreateEventRequestDto dto);
     CreateEventResponseDto toDto(Event event);
+    ListTicketTypeResponseDto toDto(TicketType ticketType);
+    ListEventResponseDto toListEventResponseDto(Event event);
 }
