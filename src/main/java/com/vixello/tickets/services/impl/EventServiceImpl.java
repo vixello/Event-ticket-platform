@@ -65,6 +65,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public Optional<Event> getEventByOrganizer(UUID organizerId, UUID event) {
+        return eventRepository.findByIdAndOrganizerId(event, organizerId);
+    }
+
+    @Override
     public Event updateEvent(UUID organizerId, UUID eventId, UpdateEventRequest eventRequest) {
         return null;
     }
