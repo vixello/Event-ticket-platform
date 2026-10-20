@@ -3,6 +3,7 @@ package com.vixello.tickets.domain.controllers;
 import com.vixello.tickets.domain.CreateEventRequest;
 import com.vixello.tickets.domain.dtos.CreateEventRequestDto;
 import com.vixello.tickets.domain.dtos.CreateEventResponseDto;
+import com.vixello.tickets.domain.dtos.GetEventDetailsResponseDto;
 import com.vixello.tickets.domain.dtos.ListEventResponseDto;
 import com.vixello.tickets.domain.entities.Event;
 import com.vixello.tickets.domain.mappers.EventMapper;
@@ -17,6 +18,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -49,5 +51,15 @@ public class EventController {
 
         Page<Event> events = eventService.listEventForOrganizer(organizerId, pageable);
         return ResponseEntity.ok(events.map(eventMapper::toListEventResponseDto));
+    }
+
+    @GetMapping(path = "/{eventId}")
+    public ResponseEntity<GetEventDetailsResponseDto> getEvent(@AuthenticationPrincipal Jwt jwt, @PathVariable UUID eventId){
+        UUID userId = parseUserId(jwt);
+
+        return eventService.getEventByOrganizer(userId, eventId)
+                .map(eventMapper::toGetEventDetailsResponseDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
