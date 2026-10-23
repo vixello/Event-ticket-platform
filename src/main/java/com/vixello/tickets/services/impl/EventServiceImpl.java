@@ -70,7 +70,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event updateEvent(UUID organizerId, UUID eventId, UpdateEventRequest eventRequest) {
+    public Event updateEventForOrganizer(UUID organizerId, UUID eventId, UpdateEventRequest eventRequest) {
+
         return null;
     }
 

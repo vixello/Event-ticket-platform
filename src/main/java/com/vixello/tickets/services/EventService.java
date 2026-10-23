@@ -13,6 +13,6 @@ public interface EventService {
     Event createEvent(UUID organizerId, CreateEventRequest eventRequest);
     Page<Event> listEventForOrganizer(UUID organizerId, Pageable pageable);
     Optional<Event> getEventByOrganizer(UUID organizerId, UUID event);
-    Event updateEvent(UUID organizerId, UUID eventId, UpdateEventRequest eventRequest);
+    Event updateEventForOrganizer(UUID organizerId, UUID eventId, UpdateEventRequest eventRequest);
     void deleteEvent(UUID organizerId, UUID eventId);
 }
