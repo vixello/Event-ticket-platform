@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateEventRequest {
+    private UUID id;
     private String name;
     private LocalDateTime start;
     private LocalDateTime end;
