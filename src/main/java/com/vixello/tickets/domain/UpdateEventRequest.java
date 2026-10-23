@@ -21,5 +21,5 @@ public class UpdateEventRequest {
     private LocalDateTime saleStart;
     private LocalDateTime saleEnd;
     private EventStatusEnum status;
-    private List<CreateTicketTypeRequest> ticketTypes = new ArrayList<>();
+    private List<UpdateTicketTypeRequest> ticketTypes = new ArrayList<>();
 }
