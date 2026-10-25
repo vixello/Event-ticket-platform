@@ -77,27 +77,27 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Transactional
-    public Event updateEventForOrganizer(UUID organizerId, UUID eventId, UpdateEventRequest event) {
-        if(null == event.getId()){
+    public Event updateEventForOrganizer(UUID organizerId, UUID eventId, UpdateEventRequest updateEvent) {
+        if(null == updateEvent.getId()){
             throw new EventUpdateException("Event ID cannot be null");
         }
 
-        if(!eventId.equals(event.getId())){
+        if(!eventId.equals(updateEvent.getId())){
             throw new EventUpdateException("IDs do not match. Cannot update the ID of an event");
         }
 
         Event existingEvent = eventRepository.findByIdAndOrganizerId(eventId, organizerId).orElseThrow(() ->
                 new EventNotFoundException(String.format("Event with ID '%s' not found", eventId)));
 
-        existingEvent.setName(event.getName());
-        existingEvent.setStart(event.getStart());
-        existingEvent.setEnd(event.getEnd());
-        existingEvent.setVenue(event.getVenue());
-        existingEvent.setSaleStart(event.getSaleStart());
-        existingEvent.setSaleEnd(event.getSaleEnd());
-        existingEvent.setStatus(event.getStatus());
+        existingEvent.setName(updateEvent.getName());
+        existingEvent.setStart(updateEvent.getStart());
+        existingEvent.setEnd(updateEvent.getEnd());
+        existingEvent.setVenue(updateEvent.getVenue());
+        existingEvent.setSaleStart(updateEvent.getSaleStart());
+        existingEvent.setSaleEnd(updateEvent.getSaleEnd());
+        existingEvent.setStatus(updateEvent.getStatus());
 
-        Set<UUID> requestTicketTypeIds = event.getTicketTypes()
+        Set<UUID> requestTicketTypeIds = updateEvent.getTicketTypes()
                 .stream()
                 .map(UpdateTicketTypeRequest::getId)
                 .filter(Objects::nonNull)
@@ -109,7 +109,7 @@ public class EventServiceImpl implements EventService {
         Map<UUID, TicketType> existingTicketTypesIndex = existingEvent.getTicketTypes().stream()
                 .collect(Collectors.toMap(TicketType::getId, Function.identity()));
 
-        for(UpdateTicketTypeRequest ticketType : event.getTicketTypes()){
+        for(UpdateTicketTypeRequest ticketType : updateEvent.getTicketTypes()){
             if(null == ticketType.getId()){
                 TicketType ticketTypeToCreate = new TicketType();
                 ticketTypeToCreate.setName(ticketType.getName());
