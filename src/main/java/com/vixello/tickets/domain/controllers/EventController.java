@@ -1,10 +1,8 @@
 package com.vixello.tickets.domain.controllers;
 
 import com.vixello.tickets.domain.CreateEventRequest;
-import com.vixello.tickets.domain.dtos.CreateEventRequestDto;
-import com.vixello.tickets.domain.dtos.CreateEventResponseDto;
-import com.vixello.tickets.domain.dtos.GetEventDetailsResponseDto;
-import com.vixello.tickets.domain.dtos.ListEventResponseDto;
+import com.vixello.tickets.domain.UpdateEventRequest;
+import com.vixello.tickets.domain.dtos.*;
 import com.vixello.tickets.domain.entities.Event;
 import com.vixello.tickets.domain.mappers.EventMapper;
 import com.vixello.tickets.services.EventService;
@@ -61,5 +59,20 @@ public class EventController {
                 .map(eventMapper::toGetEventDetailsResponseDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(path = "/{eventId}")
+    public ResponseEntity<UpdateEventResponseDto> updateEvent(@AuthenticationPrincipal Jwt jwt,
+                                                              @PathVariable UUID eventId,
+                                                              @Valid @RequestBody UpdateEventRequestDto updateEventRequestDto
+                                                              ){
+        UUID userId = parseUserId(jwt);
+
+        UpdateEventRequest updateEventRequest = eventMapper.fromDto(updateEventRequestDto);
+        Event updatedEvent = eventService.updateEventForOrganizer(userId, eventId, updateEventRequest);
+
+        UpdateEventResponseDto updateEventResponseDto = eventMapper.toUpdateEventResponseDto(updatedEvent);
+
+        return ResponseEntity.ok(updateEventResponseDto);
     }
 }

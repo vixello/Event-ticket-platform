@@ -18,6 +18,5 @@ public class CreateTicketTypeRequestDto {
     private String description;
 
     private Double price;
-
     private Integer totalAvailable;
 }
