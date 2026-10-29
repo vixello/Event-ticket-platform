@@ -4,6 +4,7 @@ import com.vixello.tickets.domain.CreateEventRequest;
 import com.vixello.tickets.domain.UpdateEventRequest;
 import com.vixello.tickets.domain.UpdateTicketTypeRequest;
 import com.vixello.tickets.domain.entities.Event;
+import com.vixello.tickets.domain.entities.EventStatusEnum;
 import com.vixello.tickets.domain.entities.TicketType;
 import com.vixello.tickets.domain.entities.User;
 import com.vixello.tickets.exceptions.EventNotFoundException;
@@ -139,5 +140,10 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void deleteEventForOrganizer(UUID organizerId, UUID eventId) {
         getEventByOrganizer(organizerId, eventId).ifPresent(eventRepository::delete);
+    }
+
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable){
+         return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 }
