@@ -136,7 +136,8 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void deleteEvent(UUID organizerId, UUID eventId) {
-
+    @Transactional
+    public void deleteEventForOrganizer(UUID organizerId, UUID eventId) {
+        getEventByOrganizer(organizerId, eventId).ifPresent(eventRepository::delete);
     }
 }
