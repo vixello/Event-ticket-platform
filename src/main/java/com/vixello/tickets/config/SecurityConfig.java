@@ -23,6 +23,7 @@ public class SecurityConfig {
                                            UserProvisioningFilter userProvisioningFilter) throws Exception{
         http
                 .authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers(HttpMethod.GET, "/api/vi/published-events").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .anyRequest().authenticated())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
