@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path="/api/vi/published-events")
+@RequestMapping(path="/api/v1/published-events")
 @RequiredArgsConstructor
 public class PublishedEventController {
 
