@@ -1,10 +1,7 @@
 package com.vixello.tickets.domain.controllers;
 
 import com.vixello.tickets.domain.dtos.ErrorDto;
-import com.vixello.tickets.exceptions.EventNotFoundException;
-import com.vixello.tickets.exceptions.EventUpdateException;
-import com.vixello.tickets.exceptions.TicketTypeNotFoundException;
-import com.vixello.tickets.exceptions.UserNotFoundException;
+import com.vixello.tickets.exceptions.*;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,6 +17,16 @@ import java.util.List;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+    @ExceptionHandler(QrCodeGenerationException.class)
+    public ResponseEntity<ErrorDto> handleQrCodeGenerationException(QrCodeGenerationException ex){
+        log.error("Caught QrCodeGenerationException", ex);
+
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("A problem occurred while attempting to generate a qr code");
+
+        return new ResponseEntity<>(errorDto, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(EventUpdateException.class)
     public ResponseEntity<ErrorDto> handleEventUpdateException(EventUpdateException ex) {
         log.error("Caught EventUpdateException", ex);
