@@ -20,7 +20,7 @@ public class QrCode {
 
     @Id
     @Column(name = "id", nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
+    //@GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "status", nullable = false)
@@ -44,7 +44,8 @@ public class QrCode {
         return Objects.hash(id, status, value, createdAt, updatedAt);
     }
 
-    @Column(name = "value", nullable = false)
+    //change the columnDefinition later w adminerze
+    @Column(name = "value", columnDefinition ="TEXT", nullable = false)
     private String value;
 
     @CreatedDate
