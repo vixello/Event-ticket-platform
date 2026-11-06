@@ -6,6 +6,7 @@ import com.vixello.tickets.domain.UpdateEventRequest;
 import com.vixello.tickets.domain.UpdateTicketTypeRequest;
 import com.vixello.tickets.domain.dtos.*;
 import com.vixello.tickets.domain.entities.Event;
+import com.vixello.tickets.domain.entities.Ticket;
 import com.vixello.tickets.domain.entities.TicketType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
